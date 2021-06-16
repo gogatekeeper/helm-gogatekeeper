@@ -1,0 +1,50 @@
+{{ template "chart.header" . }}
+{{ template "chart.deprecationWarning" . }}
+
+{{ template "chart.badgesSection" . }}
+
+{{ template "chart.description" . }}
+
+## TL;DR
+
+```console
+$ helm repo add gogatekeeper https://gogatekeeper.github.io/helm-gogatekeeper
+$ helm install my-gatekeeper gogatekeeper/gatekeeper
+```
+
+## Prerequisites
+
+* Helm v3.0.0+
+
+## Configuration options
+
+Configuration of Gatekeeper mentioned in the [user-guide.md](https://github.com/gogatekeeper/gatekeeper/blob/master/docs/user-guide.md#configuration-options)
+can be defined in your helm values file directly under the key `config:`. Eg.:
+
+```yaml
+config:
+  discovery-url: <DISCOVERY URL>
+  client-id: <CLIENT_ID>
+  client-secret: <CLIENT_SECRET>
+  upstream-url: http://127.0.0.1:80
+  scopes:
+  - vpn-user
+  resources:
+  - uri: /admin/test
+  methods:
+  - GET
+  roles:
+  - openvpn:vpn-user
+  - openvpn:prod-vpn
+  - test
+  - uri: /admin/*
+  methods:
+  - GET
+  roles:
+  - openvpn:vpn-user
+  - openvpn:commons-prod-vpn
+```
+For the complete list of all available configuration options, please read the
+[Configuration Options](https://gogatekeeper.github.io/configuration/) reference.
+
+{{ template "chart.valuesSection" . }}

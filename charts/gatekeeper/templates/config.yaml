@@ -1,0 +1,10 @@
+apiVersion: v1
+kind: Secret
+metadata:
+  name: {{ include "gatekeeper.fullname" . }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+type: Opaque
+stringData:
+  config.yaml: |
+    {{- toYaml .Values.config | nindent 4 }}

@@ -1,0 +1,249 @@
+# Default values for gatekeeper.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+# -- Number of desired pods
+replicaCount: 1
+
+image:
+  # -- Container image registry
+  registry: quay.io
+  # -- Container image name
+  repository: gogatekeeper/gatekeeper
+  # -- Container image tag (overrides the image tag whose default is the chart appVersion.)
+  tag: ""
+  # -- Image pull policy. One of `Always`, `Never`, `IfNotPresent`
+  pullPolicy: IfNotPresent
+
+# -- An optional list of references to secrets in the same namespace to use for pulling any of the images used
+imagePullSecrets: []
+# -- Overrides the name of the chart
+nameOverride: ""
+# -- Overrides the full name of the chart
+fullnameOverride: ""
+# -- Override the Kubernetes version, which is used to evaluate certain manifests
+kubeVersionOverride: ""
+
+serviceAccount:
+  # -- Specifies whether a service account should be created
+  create: true
+  # -- Annotations to add to the service account
+  annotations: {}
+  # -- The name of the service account to use. (If not set and create is true, a name is generated using the fullname template)
+  name: ""
+
+strategy:
+  # -- Type of deployment. Can be `Recreate` or `RollingUpdate`
+  type: Recreate
+  # rollingUpdate:
+  #   maxSurge: 25%
+  #   maxUnavailable: 25%
+
+# -- Annotations for pods
+podAnnotations: {}
+
+# -- Additional labels for pods
+podLabels: {}
+
+# -- Enables pod-level security attributes and common container settings
+# @default -- See [values.yaml](values.yaml)
+podSecurityContext:
+  enabled: false
+  # fsGroup: 2000
+
+# -- Enables container-level security attributes and common container settings
+# @default -- See [values.yaml](values.yaml)
+containerSecurityContext:
+  enabled: true
+  capabilities:
+    drop:
+    - ALL
+  readOnlyRootFilesystem: true
+  runAsNonRoot: true
+  # runAsUser: 1000
+
+service:
+  # -- Kubernetes Service type
+  type: ClusterIP
+  # -- Annotations to add to the Service
+  annotations: {}
+  proxy:
+    # -- Kubernetes Service port
+    port: 3000
+    # -- Service HTTP node port
+    nodePort:
+  admin:
+    # -- Kubernetes Service port for the admin-only endpoint (live-status, debug, prometheus...)
+    port: 4000
+    # -- Service HTTP node port for the admin-only endpoint (live-status, debug, prometheus...)
+    nodePort:
+
+ingress:
+  # -- Enable ingress controller resource
+  enabled: false
+  # -- The name of the IngressClass cluster resource. (Needs Kubernetes >=1.18)
+  className: ""
+  # -- Annotations for Ingress resource
+  annotations: {}
+    # kubernetes.io/ingress.class: nginx
+    # kubernetes.io/tls-acme: "true"
+
+  # -- A list of host rules used to configure the Ingress
+  # @default -- See [values.yaml](values.yaml)
+  hosts:
+    - host: chart-example.local
+      paths:
+        - path: /
+          pathType: ImplementationSpecific
+
+  # -- Ingress TLS configuration
+  tls: []
+  #  - secretName: chart-example-tls
+  #    hosts:
+  #      - chart-example.local
+
+## CPU and memory resource requests/limits
+resources:
+  # -- Maximum amount of compute resources allowed
+  limits: {}
+  #   cpu: 100m
+  #   memory: 128Mi
+
+  # -- Minimum amount of compute resources required
+  requests: {}
+  #   cpu: 100m
+  #   memory: 128Mi
+
+autoscaling:
+  # -- Enable autoscaling
+  enabled: false
+  # -- Minimum number of Gatekeeper replicas
+  minReplicas: 1
+  # -- Maximum number of Gatekeeper replicas
+  maxReplicas: 100
+  # -- Target CPU utilization percentage
+  targetCPUUtilizationPercentage: 80
+  # -- Target Memory utilization percentage
+  targetMemoryUtilizationPercentage:
+
+# -- Node labels for pod assignment
+nodeSelector: {}
+
+# -- Toleration labels for pod assignment
+tolerations: []
+
+# -- Affinity settings for pod assignment
+affinity: {}
+
+# -- Liveness Probe settings
+# @default -- See [values.yaml](values.yaml)
+livenessProbe:
+  enabled: false
+  httpGet:
+    path: /oauth/health
+    port: admin
+
+# -- Readiness Probe settings
+# @default -- See [values.yaml](values.yaml)
+readinessProbe:
+  enabled: true
+  httpGet:
+    path: /oauth/health
+    port: admin
+
+## Pod disruption budget
+## Reference: https://kubernetes.io/docs/concepts/workloads/pods/disruptions/
+pdb:
+  # -- Create Pod disruption budget resource
+  create: false
+  # -- Number or percentage of pods which must be available during a disruption.
+  minAvailable: 1
+
+metrics:
+  # -- Add scrape Annotations to the pods for Prometheus (when not using PrometheusOperator)
+  addPrometheusScrapeAnnotation: false
+  serviceMonitor:
+    # -- Create ServiceMonitor resource for scraping metrics using PrometheusOperator
+    enabled: false
+    # -- Specify if the ServiceMonitor will be deployed into a different namespace (blank deploys into same namespace as chart)
+    namespace:
+    # -- Additional labels to add to the ServiceMonitor
+    additionalLabels: {}
+    # -- Annotations to add to the ServiceMonitor
+    annotations: {}
+    # -- Interval at which metrics should be scraped
+    interval:
+
+# -- Gatekeeper configuration options, see [Configuration options](#configuration-options) section
+# @default -- See [values.yaml](values.yaml)
+config:
+  # -- the interface definition you wish the proxy to listen, all interfaces is specified as `:<port>`, unix sockets as `unix://<REL_PATH>` or `unix://</ABS PATH>`
+  listen: :3000
+  # -- port on which metrics and health endpoints will be available, if not specified it will be on above specified port
+  listen-admin: :4000
+  # -- Setting this enables the prometheus metrics collector at `/oauth/metrics`
+  enable-metrics: false
+
+  # -- the URL for retrieve the OpenID configuration
+  # discovery-url: <DISCOVERY URL>
+  # -- the client id for the 'client' application
+  # client-id: <CLIENT_ID>
+  # -- the secret associated to the 'client' application
+  # client-secret: <CLIENT_SECRET>
+
+  # -- whether to enable refresh tokens
+  # enable-refresh-tokens: true
+  # -- the redirection URL, essentially the site URL, note: /oauth/callback is added at the end
+  # redirection-url: http://127.0.0.1:3000
+  # -- the encryption key used to encode the session state (must be either 16 or 32 characters for AES-128/AES-256 selection)
+  # encryption-key: <ENCRYPTION_KEY>
+  # -- the upstream endpoint which we should proxy request
+  # upstream-url: http://127.0.0.1:80
+  # -- Returns HTTP 401 when no authentication is present, used with forward proxies.
+  # no-redirects: false
+  # -- additional scopes to add to the default (openid+email+profile)
+  # scopes:
+  # - vpn-user
+
+  # -- a collection of resource i.e. URLs that you wish to protect
+  # resources:
+  # - uri: /admin/test
+  #   # the methods on this URL that should be protected, if missing, we assuming all
+  #   methods:
+  #   - GET
+  #   # a list of roles the user must have in order to access URLs under the above
+  #   # If all you want is authentication ONLY, simply remove the roles array - the user must be authenticated but
+  #   # no roles are required
+  #   roles:
+  #   - openvpn:vpn-user
+  #   - openvpn:prod-vpn
+  #   - test
+  # - uri: /admin/*
+  #   methods:
+  #   - GET
+  #   roles:
+  #   - openvpn:vpn-user
+  #   - openvpn:commons-prod-vpn
+
+# -- Additional command line arguments to pass to the container
+extraArgs: []
+  # - --foo
+  # - --bar
+
+# -- Any extra environment variables you would like to pass on to the pod
+extraEnvVars: []
+  # - name: FOO
+  #   value: BAR
+
+# -- Array to add extra volumes
+extraVolumes: []
+  # - emptyDir: {}
+  #   name: tmp
+
+# -- Array to add extra mounts
+extraVolumeMounts: []
+  # - mountPath: /tmp
+  #   name: tmp
+
+# -- priorityClassName for the Gatekeeper deployment resource
+priorityClassName: ""
