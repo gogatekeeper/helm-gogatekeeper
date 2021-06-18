@@ -1,0 +1,29 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: {{ include "gatekeeper.fullname" . }}
+  labels:
+    {{- include "gatekeeper.labels" . | nindent 4 }}
+  {{- with .Values.service.annotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
+spec:
+  type: {{ .Values.service.type }}
+  ports:
+    - port: {{ .Values.service.proxy.port }}
+      targetPort: proxy
+      protocol: TCP
+      name: proxy
+      {{- if eq .Values.service.type "NodePort" }}
+      nodePort: {{ .Values.service.proxy.nodePort }}
+      {{- end }}
+    - port: {{ .Values.service.admin.port }}
+      targetPort: admin
+      protocol: TCP
+      name: admin
+      {{- if eq .Values.service.type "NodePort" }}
+      nodePort: {{ .Values.service.admin.nodePort }}
+      {{- end }}
+  selector:
+    {{- include "gatekeeper.selectorLabels" . | nindent 4 }}

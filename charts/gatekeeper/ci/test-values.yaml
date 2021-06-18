@@ -1,0 +1,11 @@
+config:
+  discovery-url: https://accounts.google.com
+  client-id: dummy
+  client-secret: dummy
+  upstream-url: http://127.0.0.1:80
+
+ingress:
+  enabled: true
+
+pdb:
+  create: true
