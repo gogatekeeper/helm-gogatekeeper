@@ -2,6 +2,7 @@
 
 [![License](https://img.shields.io/badge/License-Apache%202.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Release Charts](https://github.com/gogatekeeper/helm-gogatekeeper/actions/workflows/release.yml/badge.svg?branch=main)](https://github.com/gogatekeeper/helm-gogatekeeper/actions/workflows/release.yml)
+[![Artifact Hub](https://img.shields.io/endpoint?url=https://artifacthub.io/badge/repository/gogatekeeper)](https://artifacthub.io/packages/search?repo=gogatekeeper)
 
 ## Usage
 
