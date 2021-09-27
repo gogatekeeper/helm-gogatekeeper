@@ -1,12 +1,8 @@
 name: Release Charts
 
 on:
-  push:
-    branches:
-      - main
-    paths:
-      - charts/**
-      - '!charts/**/README.md'
+  release:
+    types: [published]
 
 jobs:
   release:
