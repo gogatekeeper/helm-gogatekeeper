@@ -51,6 +51,7 @@ For the complete list of all available configuration options, please read the
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity settings for pod assignment |
+| automountServiceAccountToken | bool | `false` | Enable automounting service account credentials |
 | autoscaling.enabled | bool | `false` | Enable autoscaling |
 | autoscaling.maxReplicas | int | `100` | Maximum number of Gatekeeper replicas |
 | autoscaling.minReplicas | int | `1` | Minimum number of Gatekeeper replicas |
