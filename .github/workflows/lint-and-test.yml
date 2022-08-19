@@ -42,5 +42,10 @@ jobs:
         uses: helm/kind-action@v1.2.0
         if: steps.list-changed.outputs.changed == 'true'
 
+      - name: "Install keycloak"
+        run: |
+          kubectl config use-context kind-chart-testing
+          kubectl apply -f .github/manifest.yaml
+
       - name: Run chart-testing (install)
         run: ct install --config .github/ct.yaml
