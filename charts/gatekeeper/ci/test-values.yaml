@@ -1,5 +1,5 @@
 config:
-  discovery-url: https://accounts.google.com/auth/test
+  discovery-url: https://accounts.google.com/auth/realms/test
   client-id: dummy
   client-secret: dummy
   upstream-url: http://127.0.0.1:80
