@@ -1,7 +1,7 @@
 config:
-  discovery-url: https://accounts.google.com/auth/realms/test
-  client-id: dummy
-  client-secret: dummy
+  discovery-url: http://keycloak.default:8080/auth/realms/test
+  client-id: test-client
+  client-secret: 6447d0c0-d510-42a7-b654-6e3a16b2d7e2
   upstream-url: http://127.0.0.1:80
 
 ingress:
