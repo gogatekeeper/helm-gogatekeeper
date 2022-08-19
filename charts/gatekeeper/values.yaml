@@ -39,6 +39,7 @@ strategy:
   #   maxSurge: 25%
   #   maxUnavailable: 25%
 
+# -- Enable automounting service account credentials
 automountServiceAccountToken: false
 
 # -- Annotations for pods
