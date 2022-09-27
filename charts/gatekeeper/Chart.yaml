@@ -24,5 +24,5 @@ sources:
 maintainers:
   - name: gogatekeeper
     url: https://gogatekeeper.github.io/
-version: 0.1.22
-appVersion: "1.7.0"
+version: 0.1.23
+appVersion: "1.8.0"
