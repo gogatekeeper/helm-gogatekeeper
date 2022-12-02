@@ -3,6 +3,39 @@ entries:
   gatekeeper:
   - apiVersion: v2
     appVersion: 2.0.0
+    created: "2022-12-02T22:08:18.945057287Z"
+    description: Gatekeeper is a proxy which integrates with OpenID Connect (OIDC)
+      Providers, it supports both access tokens in a browser cookie or bearer tokens.
+    digest: d0e095d329f9db5992bc2cd1a0164425ed285d95fab98b4792fc3c7eae6dbe21
+    home: https://github.com/gogatekeeper/helm-gogatekeeper
+    icon: https://gogatekeeper.github.io/logo/logo.svg
+    keywords:
+    - gogatekeeper
+    - gatekeeper
+    - louketo
+    - keycloak-gatekeeper
+    - openid-connect
+    - openid connect
+    - oidc
+    - proxy
+    - access-proxy
+    - reverse-proxy
+    - authentication
+    - authorization
+    - sso
+    maintainers:
+    - name: gogatekeeper
+      url: https://gogatekeeper.github.io/
+    name: gatekeeper
+    sources:
+    - https://github.com/gogatekeeper/helm-gogatekeeper
+    - https://gogatekeeper.github.io/
+    type: application
+    urls:
+    - https://github.com/gogatekeeper/helm-gogatekeeper/releases/download/gatekeeper-0.1.27/gatekeeper-0.1.27.tgz
+    version: 0.1.27
+  - apiVersion: v2
+    appVersion: 2.0.0
     created: "2022-12-02T21:23:46.585075106Z"
     description: Gatekeeper is a proxy which integrates with OpenID Connect (OIDC)
       Providers, it supports both access tokens in a browser cookie or bearer tokens.
@@ -628,4 +661,4 @@ entries:
     urls:
     - https://github.com/gogatekeeper/helm-gogatekeeper/releases/download/gatekeeper-0.1.8/gatekeeper-0.1.8.tgz
     version: 0.1.8
-generated: "2022-12-02T21:23:46.585327111Z"
+generated: "2022-12-02T22:08:18.945879107Z"
