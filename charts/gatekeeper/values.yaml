@@ -39,7 +39,7 @@ strategy:
   #   maxSurge: 25%
   #   maxUnavailable: 25%
 
-# -- Enable automounting service account credentials
+# -- Enable automounting service account credentials, please be aware that there is more secure way of exposing serviceAccountToken in pods with projected volumes
 automountServiceAccountToken: false
 
 # -- Annotations for pods
