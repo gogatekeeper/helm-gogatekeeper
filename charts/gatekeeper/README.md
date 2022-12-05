@@ -1,6 +1,6 @@
 # gatekeeper
 
-![Version: 0.1.25](https://img.shields.io/badge/Version-0.1.25-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
+![Version: 0.1.27](https://img.shields.io/badge/Version-0.1.27-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.0.0](https://img.shields.io/badge/AppVersion-2.0.0-informational?style=flat-square)
 
 Gatekeeper is a proxy which integrates with OpenID Connect (OIDC) Providers, it supports both access tokens in a browser cookie or bearer tokens.
 
@@ -51,7 +51,7 @@ For the complete list of all available configuration options, please read the
 | Key | Type | Default | Description |
 |-----|------|---------|-------------|
 | affinity | object | `{}` | Affinity settings for pod assignment |
-| automountServiceAccountToken | bool | `false` | Enable automounting service account credentials |
+| automountServiceAccountToken | bool | `false` | Enable automounting service account credentials, please be aware that there is more secure way of exposing serviceAccountToken in pods with projected volumes |
 | autoscaling.enabled | bool | `false` | Enable autoscaling |
 | autoscaling.maxReplicas | int | `100` | Maximum number of Gatekeeper replicas |
 | autoscaling.minReplicas | int | `1` | Minimum number of Gatekeeper replicas |
@@ -67,6 +67,7 @@ For the complete list of all available configuration options, please read the
 | extraVolumeMounts | list | `[]` | Array to add extra mounts |
 | extraVolumes | list | `[]` | Array to add extra volumes |
 | fullnameOverride | string | `""` | Overrides the full name of the chart |
+| hostAliases | list | `[]` |  |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy. One of `Always`, `Never`, `IfNotPresent` |
 | image.registry | string | `"quay.io"` | Container image registry |
 | image.repository | string | `"gogatekeeper/gatekeeper"` | Container image name |
