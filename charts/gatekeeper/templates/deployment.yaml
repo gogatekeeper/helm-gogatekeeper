@@ -77,9 +77,6 @@ spec:
           {{- end }}
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
-            {{- if .Values.hostAliases }}
-          hostAliases: {{ toYaml .Values.hostAliases | nindent 12 }}
-            {{- end }}
           volumeMounts:
             - mountPath: /etc/gatekeeper
               name: config
@@ -108,3 +105,7 @@ spec:
       tolerations:
         {{- toYaml . | nindent 8 }}
       {{- end }}
+      {{- if .Values.hostAliases }}
+      hostAliases: {{ toYaml .Values.hostAliases | nindent 8 }}
+      {{- end }}
+
