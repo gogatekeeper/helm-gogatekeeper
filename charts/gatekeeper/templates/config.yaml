@@ -7,4 +7,4 @@ metadata:
 type: Opaque
 stringData:
   config.yaml: |
-    {{- toYaml .Values.config | nindent 4 }}
+    {{- tpl (.Values.config | toYaml) $ | nindent 4 }}
