@@ -220,6 +220,7 @@ config:
   #   roles:
   #   - openvpn:vpn-user
   #   - openvpn:prod-vpn
+  #   - "{{ .Values.adminTestRole }}
   #   - test
   # - uri: /admin/*
   #   methods:
