@@ -25,4 +25,4 @@ maintainers:
   - name: gogatekeeper
     url: https://gogatekeeper.github.io/
 version: 0.1.37
-appVersion: "2.6.1"
+appVersion: "2.6.2-rc1"
