@@ -1,6 +1,6 @@
 # gatekeeper
 
-![Version: 0.1.37](https://img.shields.io/badge/Version-0.1.37-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.6.1](https://img.shields.io/badge/AppVersion-2.6.1-informational?style=flat-square)
+![Version: 0.1.38](https://img.shields.io/badge/Version-0.1.38-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.7.0](https://img.shields.io/badge/AppVersion-2.7.0-informational?style=flat-square)
 
 Gatekeeper is a proxy which integrates with OpenID Connect (OIDC) Providers, it supports both access tokens in a browser cookie or bearer tokens.
 
@@ -59,8 +59,8 @@ For the complete list of all available configuration options, please read the
 | autoscaling.targetMemoryUtilizationPercentage | string | `nil` | Target Memory utilization percentage |
 | config | object | See [values.yaml](values.yaml) | Gatekeeper configuration options, see [Configuration options](#configuration-options) section |
 | config.enable-metrics | bool | `false` | Setting this enables the prometheus metrics collector at `/oauth/metrics` |
-| config.listen | string | `":3000"` | the interface definition you wish the proxy to listen, all interfaces is specified as `:<port>`, unix sockets as `unix://<REL_PATH>` or `unix://</ABS PATH>` |
-| config.listen-admin | string | `":4000"` | port on which metrics and health endpoints will be available, if not specified it will be on above specified port |
+| config.listen | string | `"0.0.0.0:3000"` | the interface definition you wish the proxy to listen, all interfaces is specified as `:<port>`, unix sockets as `unix://<REL_PATH>` or `unix://</ABS PATH>` |
+| config.listen-admin | string | `"0.0.0.0:4000"` | port on which metrics and health endpoints will be available, if not specified it will be on above specified port |
 | containerSecurityContext | object | See [values.yaml](values.yaml) | Enables container-level security attributes and common container settings |
 | extraArgs | list | `[]` | Additional command line arguments to pass to the container |
 | extraEnvVars | list | `[]` | Any extra environment variables you would like to pass on to the pod |
