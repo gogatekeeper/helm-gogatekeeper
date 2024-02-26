@@ -1,6 +1,6 @@
 # gatekeeper
 
-![Version: 0.1.45](https://img.shields.io/badge/Version-0.1.45-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.4](https://img.shields.io/badge/AppVersion-2.9.4-informational?style=flat-square)
+![Version: 0.1.46](https://img.shields.io/badge/Version-0.1.46-informational?style=flat-square) ![Type: application](https://img.shields.io/badge/Type-application-informational?style=flat-square) ![AppVersion: 2.9.4](https://img.shields.io/badge/AppVersion-2.9.4-informational?style=flat-square)
 
 Gatekeeper is a proxy which integrates with OpenID Connect (OIDC) Providers, it supports both access tokens in a browser cookie or bearer tokens.
 
@@ -68,6 +68,7 @@ For the complete list of all available configuration options, please read the
 | extraVolumes | list | `[]` | Array to add extra volumes |
 | fullnameOverride | string | `""` | Overrides the full name of the chart |
 | hostAliases | list | `[]` |  |
+| image.digest | string | `""` | Container image digest sha256:(hash) |
 | image.pullPolicy | string | `"IfNotPresent"` | Image pull policy. One of `Always`, `Never`, `IfNotPresent` |
 | image.registry | string | `"quay.io"` | Container image registry |
 | image.repository | string | `"gogatekeeper/gatekeeper"` | Container image name |

@@ -12,6 +12,8 @@ image:
   repository: gogatekeeper/gatekeeper
   # -- Container image tag (overrides the image tag whose default is the chart appVersion.)
   tag: ""
+  # -- Container image digest sha256:(hash)
+  digest: ""
   # -- Image pull policy. One of `Always`, `Never`, `IfNotPresent`
   pullPolicy: IfNotPresent
 
