@@ -50,6 +50,7 @@ jobs:
         run: |
           kubectl config use-context kind-chart-testing
           kubectl apply -f .github/manifest.yaml
+          kubectl rollout status deployment/keycloak --timeout=600s
 
       - name: Run chart-testing (install)
         run: ct install --config .github/ct.yaml

@@ -75,6 +75,17 @@ Return the appropriate apiVersion for ingress
 {{- end -}}
 
 {{/*
+Return the appropriate apiVersion for PodDisruptionBudget
+*/}}
+{{- define "gatekeeper.pdb.apiVersion" -}}
+{{- if semverCompare "<1.21-0" (include "gatekeeper.kubeVersion" $) -}}
+{{- print "policy/v1beta1" -}}
+{{- else -}}
+{{- print "policy/v1" -}}
+{{- end -}}
+{{- end -}}
+
+{{/*
 Return the target Kubernetes version
 */}}
 {{- define "gatekeeper.kubeVersion" -}}
