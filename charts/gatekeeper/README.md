@@ -62,6 +62,7 @@ For the complete list of all available configuration options, please read the
 | config.listen | string | `"0.0.0.0:3000"` | the interface definition you wish the proxy to listen, all interfaces is specified as `:<port>`, unix sockets as `unix://<REL_PATH>` or `unix://</ABS PATH>` |
 | config.listen-admin | string | `"0.0.0.0:4000"` | port on which metrics and health endpoints will be available, if not specified it will be on above specified port |
 | containerSecurityContext | object | See [values.yaml](values.yaml) | Enables container-level security attributes and common container settings |
+| deploymentAnnotations | object | `{}` | Annotations for the deployment |
 | extraArgs | list | `[]` | Additional command line arguments to pass to the container |
 | extraEnvVars | list | `[]` | Any extra environment variables you would like to pass on to the pod |
 | extraVolumeMounts | list | `[]` | Array to add extra mounts |
