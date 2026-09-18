@@ -5,6 +5,10 @@ metadata:
   name: {{ include "gatekeeper.fullname" . }}
   labels:
     {{- include "gatekeeper.labels" . | nindent 4 }}
+  {{- with .Values.deploymentAnnotations }}
+  annotations:
+    {{- toYaml . | nindent 4 }}
+  {{- end }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
   replicas: {{ .Values.replicaCount }}
