@@ -44,6 +44,9 @@ strategy:
 # -- Enable automounting service account credentials, please be aware that there is more secure way of exposing serviceAccountToken in pods with projected volumes
 automountServiceAccountToken: false
 
+# -- Annotations for the deployment
+deploymentAnnotations: {}
+
 # -- Annotations for pods
 podAnnotations: {}
 
